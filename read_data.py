@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_feather('/home/atorres/solar/data/oahu.feather')
+df = pd.read_feather('/home/atorres/SHARED/SOLAR/data/oahu.feather')
 
 df1 = (df.replace(to_replace=-99999.0, value=np.nan)
          .drop(columns=['Date', 'Seconds', 'Year', 'DOY', 'HST']))
