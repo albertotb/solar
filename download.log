@@ -1,0 +1,6 @@
+nohup: no se tendrá en cuenta la entrada
+[download] Elapsed time (s): 4082.867047
+[read_csv] Elapsed time (s): 125.620541
+[concat] Elapsed time (s): 16.971175
+[to_datetime] Elapsed time (s): 174.255872
+[to_feather] Elapsed time (s): 8.772487
