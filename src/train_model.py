@@ -6,6 +6,7 @@ import sys
 import pandas as pd
 import numpy as np
 import feather
+import pickle
 from sklearn.linear_model import ElasticNetCV
 from sklearn.multioutput import MultiOutputRegressor
 from sklearn.model_selection import TimeSeriesSplit
@@ -54,4 +55,6 @@ if __name__ == '__main__':
 
     y_test_pred = pd.DataFrame(enet.predict(X_test), index=y_test.index, columns=y_test.columns)
     res = pd.concat((y_test, y_test_pred), axis=1, keys=['Actual', 'Pred'])
-    print(rest)
+
+    with open('model_{}.pkl'.format(width), 'wb') as f:
+        pickle.dump({'model': enet, 'pred': res}, f)
