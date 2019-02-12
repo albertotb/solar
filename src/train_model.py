@@ -8,8 +8,9 @@ import numpy as np
 import feather
 from utils.download_data import timer
 
-df = (feather.read_dataframe('/home/SHARED/SOLAR/data/oahu_min.feather')
-             .set_index('Datetime'))
+with timer():
+    df = (feather.read_dataframe('/home/SHARED/SOLAR/data/oahu_min.feather')
+                 .set_index('Datetime'))
 
 
 # I feel this function can also be done for pd.DataFrame
