@@ -41,9 +41,9 @@ if __name__ == '__main__':
 
     df_roll = window_stack(df, width=width)
 
-    #mem = df_roll.memory_usage(index=True, deep=True)
-    #print(mem)
-    #print(mem.sum()*1e-9)
+    mem = df_roll.memory_usage(index=True, deep=True)
+    print(mem)
+    print(mem.sum()*1e-9)
 
     # Split target (time t) and variables (times t-1 to t-width+1)
     y = df_roll['t']
