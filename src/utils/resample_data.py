@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_feather('/home/atorres/SHARED/SOLAR/data/oahu.feather')
+df = pd.read_feather('./data/oahu.feather')
 
 df1 = (df.replace(to_replace=-99999.0, value=np.nan)
          .drop(columns=['Date', 'Seconds', 'Year', 'DOY', 'HST']))
@@ -27,4 +27,4 @@ df_min = df2.resample('min').first().dropna()
 
 print(df_min.shape)
 print(df_min.isnull().mean())
-df_min.reset_index().to_feather('/home/atorres/SHARED/SOLAR/data/oahu_min.feather')
+df_min.reset_index().to_feather('./data/oahu_min.feather')
