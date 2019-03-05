@@ -6,18 +6,6 @@
 * Map:      https://midcdmz.nrel.gov/oahu_archive/map.jpg
 
 
-## Models
-
-Here we report the list of models currently beeing tested
-
-* ElasticNet: linear regression plus L1 and L2 regularization.
-* Persistence: simple baseline that predicts using the current observation.
-* Convolutional (1D): given an ordering of the sensors (by geographical longitude, for instance), applies a
-    series of 1D convolutions/locally connected layers to extract correlations between neighboring sensors.
-    
-They can be found inside the notebooks folder.
-
-
 ## Competition
 
 * Download data using `/src/utils/download_data.py`
@@ -29,6 +17,13 @@ They can be found inside the notebooks folder.
 * Files with name `train_MODEL.py` in `/src/`, so far:
    * ElasticNet
    * DLMs
+   
+* Notebooks inside `/notebooks/`:
+    * ElasticNet: linear regression plus L1 and L2 regularization.
+    * Persistence: simple baseline that predicts using the current observation.
+    * Convolutional (1D): given an ordering of the sensors (by geographical longitude, for instance), applies a
+        series of 1D convolutions/locally connected layers to extract correlations between neighboring sensors.
+
 
 ## Dependencies
 
