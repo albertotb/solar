@@ -11,8 +11,8 @@ df[df < 0] = 0
 ## Try DLM in one sensor
 
 GH_DH4 = df.GH_DH4
-train = GH_DH4[:"2011-07-31"]
-test = GH_DH4[:"2011-08-01"]
+train = GH_DH4[:-50]
+test = GH_DH4[-50:]
 ##
 dlm_ghdh4 = dlm(train)
 dlm_ghdh4 = dlm_ghdh4 + trend(degree=2, discount=0.90, name='ltrend', w=10.0) ## Just a linear trend
@@ -20,7 +20,7 @@ dlm_ghdh4 = dlm_ghdh4 + trend(degree=2, discount=0.90, name='ltrend', w=10.0) ##
 dlm_ghdh4.fitForwardFilter()
 
 preds = np.zeros(len(test))
-for i in range(len(test)):	
+for i in range(len(test)):
     preds[i] = dlm_ghdh4.predictN(1)[0][0]
     ##
     dlm_ghdh4.append([test[i]])
