@@ -17,6 +17,7 @@
 * Files with name `train_MODEL.py` in `/src/`, so far:
    * ElasticNet
    * DLMs
+   * Convolutional (1D) network
    
 * Notebooks inside `/notebooks/`:
     * ElasticNet: linear regression plus L1 and L2 regularization.
