@@ -18,7 +18,7 @@ def clear_sky(s, info=None):
         radiation = 0.
     else:
         radiation = pysolar.radiation.get_radiation_direct(s['Datetime'], deg)
-    return(radiation)
+    return(pd.Series([radiation, deg]))
 
 
 if __name__ == '__main__':
@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
     # apply function to every row
     with timer():
-        df2['ClearSky'] = df2[['Datetime', 'Location']].apply(clear_sky, axis=1, info=info)
+        df2[['ClearSky', 'Altitude']] = df2[['Datetime', 'Location']].apply(clear_sky, axis=1, info=info)
 
     # TODO: set negative GH to 0 and normalize with ClearSky
-    df2.to_pickle('/home/SHARED/SOLAR/data/oahu_min_norm.pkl')
+    df2.to_pickle('/home/SHARED/SOLAR/data/oahu_min_norm1.pkl')
