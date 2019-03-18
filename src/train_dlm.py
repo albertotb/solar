@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import feather
 import datetime
-from pydlm_lite import dlm, trend
+from pydlm import *
 
 df = (feather.read_dataframe('/home/SHARED/SOLAR/data/oahu_min.feather')
              .set_index('Datetime'))
@@ -14,7 +14,7 @@ GH_DH4 = df.GH_DH4
 train = GH_DH4[:-50]
 test = GH_DH4[-50:]
 ##
-dlm_ghdh4 = dlm(train)
+dlm_ghdh4 = odlm(train)
 dlm_ghdh4 = dlm_ghdh4 + trend(degree=2, discount=0.90, name='ltrend', w=10.0) ## Just a linear trend
 
 dlm_ghdh4.fitForwardFilter()
