@@ -5,12 +5,29 @@
 * Location: https://midcdmz.nrel.gov/oahu_archive/instruments.html
 * Map:      https://midcdmz.nrel.gov/oahu_archive/map.jpg
 
+## Problems
+ 1. Given some sensors in certain locations at times t-k, ..., t, predict the output of the sensors at time t+1
+    * Only interested in predicting accurately some of them, called control (inner) sensors
+    * Rest of the sensors are called proxy (outer) sensors
+    * **Problem:** sensors fail and thus data will be missing for certain timesteps
+        * Input missing data
+        * Transform sensor data into a rectangular grid using the available information at that timestep (learning the spacial structure)
+ 2. Given a set of N control and proxy sensors and a budget B, decide where to place B new sensors to maximize the predicibility of the control (inner) sensors   
 
-## Competition
 
-* Download data using `/src/utils/download_data.py`
-* Resample data from 1s to 1m with `/src/utils/resample_data.py`
-* Test-set: last four months (Ago-Nov), no retraining from start of test set.
+## Preprocessing data
+
+* Download data using `/src/utils/download_data.py` -> `oahu.feather`
+* Resample data from 1s to 1m with `/src/utils/resample_data.py` -> `oahu_min.feather`
+* Compute clearsky models with `/src/utils/compute_clearsky.py` -> `oahu_min_cs.pkl`:
+     * [Pysolar](https://pysolar.readthedocs.io/en/latest/) library
+     * [Pvlib](https://pvlib-python.readthedocs.io/en/latest/clearsky.html) library (Ineichen, Haurwitz, simplified Solis)
+     * Formulas from UCM (Haurwitz, Kasten)
+* Run clearsky notebook `/notebooks/clearsky.ipynb` to compare the clearsky models -> `oahu_min_final.pkl`:
+     * Set negative GHI to 0
+     * Filter only always-sunlight hours (7:30-17:30)
+     * Drop AP3 location (faulty sensor)
+     * Normalize the GHI with the best clearsky model to (hopefully) [0, 1] range
 
 ## Models
 
