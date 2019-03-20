@@ -10,9 +10,15 @@
 
 * Download data using `/src/utils/download_data.py` -> `oahu.feather`
 * Resample data from 1s to 1m with `/src/utils/resample_data.py` -> `oahu_min.feather`
-* Compute clearsky models with `/src/utils/compute_clearsky.py` -> `oahu_min_cs.pkl`
-* Run clearsky notebook `/notebooks/clearsky.ipynb` to comparte the clearsky models and use the best one to normalize the GHI -> `oahu_min_final.pkl`
-* Test-set: last four months (Ago-Nov), no retraining from start of test set.
+* Compute clearsky models with `/src/utils/compute_clearsky.py` -> `oahu_min_cs.pkl`:
+     * [Pysolar](https://pysolar.readthedocs.io/en/latest/) library
+     * [Pvlib](https://pvlib-python.readthedocs.io/en/latest/clearsky.html) library (Ineichen, Haurwitz, simplified Solis)
+     * Formulas from UCM (Haurwitz, Kasten)
+* Run clearsky notebook `/notebooks/clearsky.ipynb` to compare the clearsky models -> `oahu_min_final.pkl`:
+     * Set negative GHI to 0
+     * Filter only always-sunlight hours (7:30-17:30)
+     * Drop AP3 location (faulty sensor)
+     * Normalize the GHI with the best clearsky model to (hopefully) [0, 1] range
 
 ## Models
 
