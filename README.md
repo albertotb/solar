@@ -6,10 +6,12 @@
 * Map:      https://midcdmz.nrel.gov/oahu_archive/map.jpg
 
 
-## Competition
+## Preprocessing data
 
-* Download data using `/src/utils/download_data.py`
-* Resample data from 1s to 1m with `/src/utils/resample_data.py`
+* Download data using `/src/utils/download_data.py` -> `oahu.feather`
+* Resample data from 1s to 1m with `/src/utils/resample_data.py` -> `oahu_min.feather`
+* Compute clearsky models with `/src/utils/compute_clearsky.py` -> `oahu_min_cs.pkl`
+* Run clearsky notebook `/notebooks/clearsky.ipynb` to comparte the clearsky models and use the best one to normalize the GHI -> `oahu_min_final.pkl`
 * Test-set: last four months (Ago-Nov), no retraining from start of test set.
 
 ## Models
