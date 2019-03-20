@@ -12,7 +12,7 @@
     * **Problem:** sensors fail and thus data will be missing for certain timesteps
         * Input missing data
         * Transform sensor data into a rectangular grid using the available information at that timestep (learning the spacial structure)
- 2. Given a set of N control and proxy sensors and a budget B, decide where to place B new sensors to improve the predicibility of the control (inner) sensors   
+ 2. Given a set of N control and proxy sensors and a budget B, decide where to place B new sensors to maximize the predicibility of the control (inner) sensors   
 
 
 ## Preprocessing data
