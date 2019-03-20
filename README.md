@@ -5,7 +5,7 @@
 * Location: https://midcdmz.nrel.gov/oahu_archive/instruments.html
 * Map:      https://midcdmz.nrel.gov/oahu_archive/map.jpg
 
-## Problems:
+## Problems
  1. Given some sensors in certain locations at times t-k, ..., t, predict the output of the sensors at time t+1
     * Only interested in predicting accurately some of them, called control (inner) sensors
     * Rest of the sensors are called proxy (outer) sensors
