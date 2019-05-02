@@ -30,3 +30,56 @@ def df_to_roll(df, width, step):
     df_roll = pd.DataFrame(
         np_array, index=df.index[width - 1:], columns=columns)
     return df_roll
+
+
+def to_array_cov1d(df_roll, chosen_times=None, scale=1., reverse_times=True):
+    '''
+    Convert the rolled dataframe into the X and y numpy arrays.
+    The X array has several time slices, given in chosen_times and
+    sorts them in ascending order if reverse_times=True.
+    Output shape X_np : (item, sensor, time_slice), 'time last'
+    Output shape y_np : (item, sensor)
+    '''
+    y = df_roll['t']
+    n_sensors = y.shape[1]
+    X = df_roll.drop(columns='t', level='time')
+
+    if chosen_times is None:
+        chosen_times = X.columns.levels[0].tolist()
+        chosen_times.remove('t')
+    assert 't' not in chosen_times, 'Time slice t should not be in chosen_times'
+
+    if reverse_times:
+        chosen_times = chosen_times[::-1]
+
+    #  This is the correct way of getting the correct order of the array
+    X_np = df_roll[chosen_times].to_numpy().reshape(
+        (-1, len(chosen_times), n_sensors))
+    # Swap time_slice and sensor axes
+    X_np = np.swapaxes(X_np, 1, 2)
+    y_np = y.to_numpy()
+
+    if scale != 1.:
+        X_np = X_np / scale
+        y_np = y_np / scale
+
+    assert X_np.shape[2] == len(
+        chosen_times), 'X_np does not have correct number of time slices'
+    assert X_np.shape[0] == y_np.shape[0], 'X_np and y_np do not have the same number of items'
+    assert X_np.shape[1] == y_np.shape[1], 'X_np and y_np do not have the same number of sensors'
+
+    return X_np, y_np
+
+
+def to_array_cov2d(df_roll, chosen_times=None, scale=1., reverse_times=True):
+    '''
+    Convert the rolled dataframe into the X and y numpy arrays.
+    The X array has several time slices, given in chosen_times and
+    sorts them in ascending order if reverse_times=True.
+    Output shape X_np : (item, sensor, time_slice, 1), 'channels_last'
+    Output shape y_np : (item, sensor)
+    '''
+    X_np, y_np = to_array_cov1d(df_roll, chosen_times, scale, reverse_times)
+    # Add last axis: channels
+    X_np = np.expand_dims(X_np, axis=3)
+    return X_np, y_np
