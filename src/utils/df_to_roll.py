@@ -7,6 +7,11 @@ import numpy as np
 import pandas as pd
 
 
+def window_stack_forward(a, stepsize=1, width=3):
+    """https://stackoverflow.com/questions/15722324/sliding-window-in-numpy"""
+    return np.hstack(a[i:1 + i - width or None:stepsize] for i in range(0, width))
+
+
 def window_stack(a, width=3, step=1):
     """
     I feel this function can also be done for pd.DataFrame
