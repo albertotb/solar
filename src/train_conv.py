@@ -1,190 +1,136 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import numpy as np
-import pandas as pd
-
+# # Build train and test matrices
 import sys
-import feather
-import keras
-from keras import backend as K
-from keras.datasets import cifar10
-from keras.layers import (Activation, Add, Concatenate, Conv1D, Conv2D, Dense,
-                          Dot, Dropout, Flatten, Input, Lambda,
-                          LocallyConnected1D, MaxPooling1D, MaxPooling2D,
-                          Multiply, Reshape, Subtract, UpSampling1D)
-from keras.models import Model, Sequential
-from keras.preprocessing.image import ImageDataGenerator
-from utils.clr import CyclicLR
-
+import pandas as pd
+import numpy as np
 from sklearn.model_selection import TimeSeriesSplit
+import keras
+
+from utils.build_matrix import df_shift, to_array
+from utils.clr import CyclicLR
+from utils.models import conv1D_lon, conv1D_lon_lat
 
 
-# In pandas 0.24, use df.to_numpy() instead of df.values. Also care with non-numeric columns
-def window_stack(df, width=3):
-    """Converts a pandas.DataFrame with shape (n, d) to another one with shape
-       (n-width, d*width) by stacking shifted versions of itself
-    """
-    n = df.shape[0]
-    a = np.hstack(list(df.values[(width-1-i):(n-i)] for i in range(0, width)))
+df = pd.read_pickle('/home/SHARED/SOLAR/data/oahu_min_final.pkl')
+df_roll = df_shift(df, periods=1)
 
-    times = [('t' if not idx else 't-{:d}'.format(idx))
-             for idx in range(width)]
-    columns = pd.MultiIndex.from_product(
-        (times, df.columns), names=('time', 'location'))
+# Split target (time t) and variables (times t-1 to t-width+1)
+y = df_roll['t']
+X = df_roll.drop(columns='t', level='time')
 
-    return pd.DataFrame(a, index=df.index[width-1:], columns=columns)
+# Split train-test, approximately 12 and 4 months respectively
+X_train, X_test = X[:'2011-07-31'], X['2011-08-01':]
+y_train, y_test = y[:'2011-07-31'], y['2011-08-01':]
 
+# We only use the previous timestep as features
+X_tr1 = X_train['t-1']
+y_tr1 = y_train
 
-def make_features(fname, width):
-    """ Given the data fnmae, creates the features and returns the train-test split. 
-    Last value to be returned is the ordenation of the features. """
-    df = (feather.read_dataframe(fname)
-                 .set_index('Datetime'))
+X_te1 = X_test['t-1']
+y_te1 = y_test
 
-    df_roll = window_stack(df, width=width)
+# We load the info of the sensors to extract the longitude information
+info = pd.read_pickle('/home/SHARED/SOLAR/data/info.pkl')
 
-    # Split target (time t) and variables (times t-1 to t-width+1)
-    y = df_roll['t']
-    X = df_roll.drop(columns='t', level='time')
+# Sorted longitudes
+lon = info['Longitude'].sort_values(ascending=False).drop('AP3')
+lat = info['Latitude'].sort_values(ascending=False).drop('AP3')
 
-    # Split train-test, approximately 12 and 4 months respectively
-    X_train, X_test = X[:'2011-07-31'], X['2011-08-01':]
-    y_train, y_test = y[:'2011-07-31'], y['2011-08-01':]
+# Finally, we sort the data according to sensor's longitude
+X_tr_lon = X_tr1[lon.index]
+y_tr_lon = y_tr1[lon.index]
+X_te_lon = X_te1[lon.index]
+y_te_lon = y_te1[lon.index]
 
-    # For the moment, we only use the previous timestep as features
-    X_tr1 = X_train['t-1']
-    y_tr1 = y_train
+X_tr_lat = X_tr1[lat.index]
+y_tr_lat = y_tr1[lat.index]
+X_te_lat = X_te1[lat.index]
+y_te_lat = y_te1[lat.index]
 
-    X_te1 = X_test['t-1']
-    y_te1 = y_test
+lr = 0.0001
+opt = keras.optimizers.Adam(lr=lr)
 
-    # We load the info of the sensors to extract the longitude information
-    info = pd.read_csv('/home/SHARED/SOLAR/data/info.csv')
+# We add a callback to log metrics and another one to schedule the learning rate
+c1 = keras.callbacks.BaseLogger(stateful_metrics=None)
+c2 = CyclicLR(step_size=250, base_lr=lr)
+c3 = keras.callbacks.History()
 
-    info.Location = info.Location.apply(
-        lambda x: (x[:2] + x[-2:]).replace('_', ''))
-    info.index = info.Location
-    # Sorted longitudes
-    longs = info['       Longitude'].sort_values(ascending=False)
-
-    # We drop two sensors (they are different compared to the other 17, since they are "tilted")
-    X_tr1.drop('GT_AP6', inplace=True, axis=1)
-    y_tr1.drop('GT_AP6', inplace=True, axis=1)
-    X_tr1.drop('GT_DH1', inplace=True, axis=1)
-    y_tr1.drop('GT_DH1', inplace=True, axis=1)
-    X_te1.drop('GT_AP6', inplace=True, axis=1)
-    y_te1.drop('GT_AP6', inplace=True, axis=1)
-    X_te1.drop('GT_DH1', inplace=True, axis=1)
-    y_te1.drop('GT_DH1', inplace=True, axis=1)
-
-    # Just some auxiliar code to homogeneize name of sensors across different tables
-    def homogen_name(x): return x[-4:].replace('_', '')
-    X_tr1.columns = [homogen_name(x) for x in X_tr1.columns.values.tolist()]
-    y_tr1.columns = [homogen_name(x) for x in y_tr1.columns.values.tolist()]
-    X_te1.columns = [homogen_name(x) for x in X_te1.columns.values.tolist()]
-    y_te1.columns = [homogen_name(x) for x in y_te1.columns.values.tolist()]
-
-    # Finally, we sort the data according to sensor's longitude
-    X_tr1_1 = X_tr1[longs.index]
-    y_tr1_1 = y_tr1[longs.index]
-    X_te1_1 = X_te1[longs.index]
-    y_te1_1 = y_te1[longs.index]
-
-    return X_tr1_1, y_tr1_1, X_te1_1, y_te1_1, longs
+batch_size = 1 << 11   # as big as possible so we can explore many models
+epochs = 1 << 5
+epochs = 5
 
 
-def to_array(X_tr, y_tr, X_te, y_te, sensor='AP5'):
-    ''' Converts dataframe to numpy array for predicting any given sensor. '''
-    X_tr1_1_np = X_tr.values
-    y_tr1_1_np = y_tr[sensor].values
+def train_and_test_sensor(idx_sensor, id_sensor, n_sensors, use_lat=False):
+    X_tr1, y_tr1, X_te1, y_te1 = to_array(X_tr_lon, y_tr_lon, X_te_lon, y_te_lon, id_sensor=id_sensor)
 
-    X_te1_1_np = X_te.values
-    y_te1_1_np = y_te[sensor].values
-
-    return X_tr1_1_np, y_tr1_1_np, X_te1_1_np, y_te1_1_np
+    if use_lat:
+        X_tr2, y_tr2, X_te2, y_te2 = to_array(X_tr_lat, y_tr_lat, X_te_lat, y_te_lat, id_sensor=id_sensor)
 
 
-def make_convolutional_model(index_sensor, n_sensors=17):
-    ''' Returns a model using all the sensors to predict index_sensor '''
-    xin = Input(shape=(n_sensors, 1), name='main_input')
-    x = LocallyConnected1D(
-        8, 7, data_format='channels_last', padding='valid')(xin)
-    x = Activation('relu')(x)
-    x = LocallyConnected1D(
-        16, 5, data_format='channels_last', padding='valid')(x)
-    x = Activation('relu')(x)
-    x = Conv1D(32, 3, data_format='channels_last', padding='causal')(x)
-    xl = Flatten()(x)
-    xl = Dropout(0.2)(xl)
-    xo = Dense(1)(xl)
+    # Validation using TS split (just to obtain different MAE estimations, no hyperoptimization for the moment)
+    cv_loss = []
+    for tr_idx, va_idx in TimeSeriesSplit(n_splits=5).split(X_tr1):
 
-    # use date info here?
-    xinf = Flatten()(xin)
-    s = Dense(5)(xinf)
-    s = Activation('tanh')(s)
-    s = Dense(2)(s)
-    s = Activation('softmax')(s)
+        if not use_lat:
+            train_data = np.atleast_3d(X_tr1[tr_idx])
+            validation_data = np.atleast_3d(X_tr1[va_idx])
+            model = conv1D_lon(idx_sensor, n_sensors=n_sensors)
 
-    # sort of residual connection
-    xin_0 = Activation('relu')(xin)
-    xin_1 = Lambda(lambda x: x[:, index_sensor, :])(xin_0)
-    xo_m = Dot(axes=1)([Concatenate()([xo, xin_1]), s])
-    xo_m = Activation('relu')(xo_m)
+        else:
+            train_data = [np.atleast_3d(X_tr1[tr_idx]), np.atleast_3d(X_tr2[tr_idx])]
+            validation_data = [np.atleast_3d(X_tr1[va_idx]), np.atleast_3d(X_tr2[va_idx])]
 
-    model = Model(inputs=[xin], outputs=[xo_m])
-    return model
+            model = conv1D_lon_lat(idx_sensor, n_sensors=n_sensors)
 
-
-if __name__ == '__main__':
-
-    if len(sys.argv) != 3:
-        print('ArgError')
-        sys.exit()
-
-    fname = sys.argv[1]
-    width = int(sys.argv[2])
-
-    X_train, y_train, X_test, y_test, longs = make_features(fname, width)
-    longs_np = longs.index.values
-
-    lr = 0.0001
-    batch_size = 1 << 11   # as big as possible so we can explore many models
-    epochs = 1 << 5
-
-    opt = keras.optimizers.Adam(lr=lr)
-
-    # We add a callback to log metrics and another one to schedule the learning rate
-    c1 = keras.callbacks.BaseLogger(stateful_metrics=None)
-    c2 = CyclicLR(step_size=250, base_lr=lr)
-    c3 = keras.callbacks.History()
-
-    def train_and_test_sensor(id_sensor=4):
-        X_tr, y_tr, X_te, y_te = to_array(
-            X_train, y_train, X_test, y_test, sensor=longs_np[id_sensor])
-
-        # Validation using TS split (just to obtain different MAE estimations, no hyperoptimization for the moment)
-        for tr_idx, va_idx in TimeSeriesSplit(n_splits=5).split(X_tr):
-            model = make_convolutional_model(id_sensor, n_sensors=17)
-            model.compile(opt, loss='mean_absolute_error')
-            model.fit(np.atleast_3d(X_tr[tr_idx]), y_tr[tr_idx], batch_size=batch_size, epochs=epochs, validation_data=(
-                np.atleast_3d(X_tr[va_idx]), y_tr[va_idx]), callbacks=[c2, c3], verbose=0)
-            print('MAE_val ', c3.history['val_loss'][-1])
-
-        # Testing
-        model = make_convolutional_model(id_sensor, n_sensors=17)
         model.compile(opt, loss='mean_absolute_error')
-        model.fit(np.atleast_3d(X_tr), y_tr, batch_size=batch_size, epochs=epochs,
-                  validation_data=(np.atleast_3d(X_te), y_te), callbacks=[c2, c3], verbose=0)
+        model.fit(train_data, y_tr1[tr_idx],
+                  batch_size=batch_size,
+                  epochs=epochs,
+                  validation_data=(validation_data, y_tr1[va_idx]),
+                  callbacks=[c2, c3],
+                  verbose=0)
 
-        print('MAE_test ', c3.history['val_loss'][-1])
-        return longs_np[id_sensor], c3.history['val_loss'][-1]
+        cv_loss.append(c3.history['val_loss'][-1])
 
-    maes = {}
-    for i in range(len(longs_np)):
-        print(i, longs_np[i])
-        sensor, mae = train_and_test_sensor(i)
-        maes[sensor] = mae
+    # Testing
+    if not use_lat:
+        train_data = np.atleast_3d(X_tr1)
+        validation_data = np.atleast_3d(X_te1)
+        model = conv1D_lon(idx_sensor, n_sensors=n_sensors)
 
-    maes = pd.Series(maes, name='MAE').sort_values()
-    print(maes)
+    else:
+        train_data = [np.atleast_3d(X_tr1), np.atleast_3d(X_tr2)]
+        validation_data = [np.atleast_3d(X_te1), np.atleast_3d(X_te2)]
+        model = conv1D_lon_lat(idx_sensor, n_sensors=n_sensors)
+
+    model.compile(opt, loss='mean_absolute_error')
+    model.fit(train_data, y_tr1,
+              batch_size=batch_size,
+              epochs=epochs,
+              validation_data=(validation_data, y_te1),
+              callbacks=[c2, c3],
+              verbose=0)
+
+    test_loss = c3.history['val_loss'][-1]
+
+    print('MAE_val ', cv_loss)
+    print('MAE_test ', test_loss)
+
+    return test_loss, cv_loss
+
+
+maes1 = {}
+maes2 = {}
+for idx_sensor, id_sensor in enumerate(lon.index.values):
+    print(idx_sensor, id_sensor)
+    maes1[id_sensor], _ = train_and_test_sensor(idx_sensor, id_sensor, n_sensors=16)
+    maes2[id_sensor], _ = train_and_test_sensor(idx_sensor, id_sensor, n_sensors=16, use_lat=True)
+
+maes1 = pd.Series(maes1, name='MAE').sort_values()
+maes2 = pd.Series(maes2, name='MAE').sort_values()
+
+print(maes1)
+print(maes2)
+

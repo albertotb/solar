@@ -26,3 +26,18 @@ def df_shift(df, periods=1):
                       keys=['t'] + [ 't-{:d}'.format(t+1) for t in range(periods) ],
                       names=['time', 'location'])
               .dropna())
+
+
+def to_array(X_train, y_train, X_test, y_test, id_sensor='AP5', val=0.1):
+    ''' Converts dataframe to numpy array for predicting any given sensor. val specifies the fraction
+    of training samples to be used as validation. '''
+    X_tr1_1_np = X_train.values
+    y_tr1_1_np = y_train[id_sensor].values
+
+    #val_idx = int((1 - val)*len(y_tr1_1_np))
+
+    X_te1_1_np = X_test.values
+    y_te1_1_np = y_test[id_sensor].values
+
+    #return X_tr1_1_np[:val_idx], y_tr1_1_np[:val_idx], X_tr1_1_np[val_idx:], y_tr1_1_np[val_idx:], X_te1_1_np, y_te1_1_np
+    return X_tr1_1_np, y_tr1_1_np, X_te1_1_np, y_te1_1_np
