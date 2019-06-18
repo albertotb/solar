@@ -59,7 +59,6 @@ c3 = keras.callbacks.History()
 
 batch_size = 1 << 11   # as big as possible so we can explore many models
 epochs = 1 << 5
-epochs = 5
 
 
 def train_and_test_sensor(idx_sensor, id_sensor, n_sensors, use_lat=False):
@@ -81,7 +80,6 @@ def train_and_test_sensor(idx_sensor, id_sensor, n_sensors, use_lat=False):
         else:
             train_data = [np.atleast_3d(X_tr1[tr_idx]), np.atleast_3d(X_tr2[tr_idx])]
             validation_data = [np.atleast_3d(X_tr1[va_idx]), np.atleast_3d(X_tr2[va_idx])]
-
             model = conv1D_lon_lat(idx_sensor, n_sensors=n_sensors)
 
         model.compile(opt, loss='mean_absolute_error')
@@ -115,6 +113,8 @@ def train_and_test_sensor(idx_sensor, id_sensor, n_sensors, use_lat=False):
 
     test_loss = c3.history['val_loss'][-1]
 
+    model.save('../models/conv1D_{}_{:1d}.h5'.format(id_sensor, use_lat))
+
     print('MAE_val ', cv_loss)
     print('MAE_test ', test_loss)
 
@@ -128,9 +128,10 @@ for idx_sensor, id_sensor in enumerate(lon.index.values):
     maes1[id_sensor], _ = train_and_test_sensor(idx_sensor, id_sensor, n_sensors=16)
     maes2[id_sensor], _ = train_and_test_sensor(idx_sensor, id_sensor, n_sensors=16, use_lat=True)
 
-maes1 = pd.Series(maes1, name='MAE').sort_values()
-maes2 = pd.Series(maes2, name='MAE').sort_values()
+maes1 = pd.Series(maes1, name='conv1D_lon')
+maes2 = pd.Series(maes2, name='conv1D_lon_lat')
 
-print(maes1)
-print(maes2)
+df_res = pd.concat([maes1, maes2])
+df_res.to_pickle('conv1D.pkl')
+print(df_res)
 
