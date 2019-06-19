@@ -45,6 +45,7 @@
 * Models inside `/models/` and `/results`:
     * GPconstant_LocCon2D_LSTM_periods9: Use GP as input X. Time distributed Locally Connected 2D and then LSTM. Use 9 periods of time (previous 9 minutes) as feature
     * GPtorch_LocCon2D_LSTM_periods9: Same, but using GP trained in PyTorch.
+    * GPconstant_LocCon2D_Dense_periods3: Train with GP as input X. LocCon2D using timestamps as channels. Then Dense Layer. Here the number of parameter scales with periods.
 
 ## Dependencies
 
