@@ -131,7 +131,7 @@ for idx_sensor, id_sensor in enumerate(lon.index.values):
 maes1 = pd.Series(maes1, name='conv1D_lon')
 maes2 = pd.Series(maes2, name='conv1D_lon_lat')
 
-df_res = pd.concat([maes1, maes2])
+df_res = pd.concat([maes1, maes2], axis=1, sort=True)
 df_res.to_pickle('conv1D.pkl')
 print(df_res)
 
