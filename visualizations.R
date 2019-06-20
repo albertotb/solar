@@ -6,10 +6,11 @@ library(reshape2)
 
 data = read.csv("results/all.csv")
 DH10_NE = read.csv("results/DH10_NE.csv")
+DH10_SW = read.csv("results/DH10_SW.csv")
 
-DH10_NE$MAE[DH10_NE$Location == "DH10"] = 0.07
+
 target_sensor = "DH10"
-predictors =  as.character(DH10_NE$Location[DH10_NE$isPredictor == 1])
+predictors =  as.character(DH10_SW$Location[DH10_SW$isPredictor == 1])
 
 plot_all = function(df, name="model"){
 
@@ -103,14 +104,16 @@ plot_net = function(df, target_sensor, predictors){
                                    right = max(df$Longitude) + eps, top = max(df$Latitude) + eps), zoom = 15)
   
   
-  #myPalette <- colorRampPalette(rev(brewer.pal(12, "Spectral")))
-  #sc <- scale_colour_gradientn(colours = myPalette(10), limits=c(0, 0.1))
+  myPalette <- colorRampPalette(rev(brewer.pal(11, "Spectral")))
+  sc <- scale_colour_gradientn(colours = myPalette(10), limits=c(0.07, 0.1))
   
   p = ggmap(hawaii) + geom_point(aes(Longitude, Latitude), data=df, shape = 16, color="grey34", size=2) 
   #
   p = p + geom_line(aes(X, Y, group = grp), data=net, color="grey34", linetype = "dashed")
   #
-  p = p + scale_color_gradient2(limits=c(0,0.1))
+  p = p + sc#scale_color_gradient2(limits=c(0.07,0.1))
+  #
+  p = p + scale_size_continuous(limits=c(0.07,0.1))#,breaks=c(5,10,20,30))
   #
   p = p + geom_point(aes(x=Longitude, y=Latitude, size=MAE, color=MAE), data=target) 
   #

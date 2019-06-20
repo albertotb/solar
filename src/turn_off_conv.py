@@ -17,7 +17,7 @@ target_sensor = "DH10"
 predictors = ["DH1","DH7","DH2","DH4","DH3","DH5","DH10","AP1","AP5","AP4","AP6","AP7"]
 #predictors = ["DH10", "DH9", "DH6", "DH8", "DH11"]
 
-path = 'results/' + str(target_sensor) + "_SW.csv" ## to save results
+path = 'results/' + str(target_sensor) + "_NE.csv" ## to save results
 
 df = pd.read_pickle('/home/SHARED/SOLAR/data/oahu_min_final.pkl')
 df_roll = df_shift(df, periods=1)
@@ -51,14 +51,14 @@ lon = info['Longitude'].sort_values(ascending=False)
 lat = info['Latitude'].sort_values(ascending=False)
 
 # Keep just target sensors
-lon = lon[lon.index.isin(predictors)]
-lat = lat[lat.index.isin(predictors)]
+#lon = lon[lon.index.isin(predictors)]
+#lat = lat[lat.index.isin(predictors)]
 
-# Drop all sensors except predictors
-X_tr1 = X_tr1[predictors]
-y_tr1 = y_tr1[predictors]
-X_te1 = X_te1[predictors]
-y_te1 = y_te1[predictors]
+# Zero al sensors not in predictors
+X_tr1[X_tr1.columns.difference(predictors)] = 0.0 
+y_tr1[y_tr1.columns.difference(predictors)] = 0.0 
+X_te1[X_te1.columns.difference(predictors)] = 0.0 
+y_te1[y_te1.columns.difference(predictors)] = 0.0 
 
 # Finally, we sort the data according to sensor's longitude
 X_tr_lon = X_tr1[lon.index]
@@ -71,6 +71,7 @@ y_tr_lat = y_tr1[lat.index]
 X_te_lat = X_te1[lat.index]
 y_te_lat = y_te1[lat.index]
 
+print(X_tr_lon.head)
 ##
 lr = 0.0001
 opt = keras.optimizers.Adam(lr=lr)
@@ -146,7 +147,7 @@ def train_and_test_sensor(idx_sensor, id_sensor, n_sensors, use_lat=False):
 idx_sensor = np.where(lon.index.values == target_sensor)[0][0]
 
 ##
-test_loss, _ = train_and_test_sensor(idx_sensor, target_sensor, n_sensors=len(predictors))
+test_loss, _ = train_and_test_sensor(idx_sensor, target_sensor, n_sensors=16)
 
 info.MAE[info.index == target_sensor] = test_loss
 
