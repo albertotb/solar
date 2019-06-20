@@ -1,0 +1,340 @@
+OMP: Info #212: KMP_AFFINITY: decoding x2APIC ids.
+OMP: Info #210: KMP_AFFINITY: Affinity capable, using global cpuid leaf 11 info
+OMP: Info #154: KMP_AFFINITY: Initial OS proc set respected: 0-15
+OMP: Info #156: KMP_AFFINITY: 16 available OS procs
+OMP: Info #157: KMP_AFFINITY: Uniform topology
+OMP: Info #179: KMP_AFFINITY: 1 packages x 8 cores/pkg x 2 threads/core (8 total cores)
+OMP: Info #214: KMP_AFFINITY: OS proc to physical thread map:
+OMP: Info #171: KMP_AFFINITY: OS proc 0 maps to package 0 core 0 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 8 maps to package 0 core 0 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 1 maps to package 0 core 1 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 9 maps to package 0 core 1 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 2 maps to package 0 core 2 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 10 maps to package 0 core 2 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 3 maps to package 0 core 3 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 11 maps to package 0 core 3 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 4 maps to package 0 core 4 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 12 maps to package 0 core 4 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 5 maps to package 0 core 5 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 13 maps to package 0 core 5 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 6 maps to package 0 core 6 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 14 maps to package 0 core 6 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 7 maps to package 0 core 7 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 15 maps to package 0 core 7 thread 1 
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 9965 thread 0 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 9973 thread 1 bound to OS proc set 1
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 9974 thread 2 bound to OS proc set 2
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 9975 thread 3 bound to OS proc set 3
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 9977 thread 5 bound to OS proc set 5
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 9976 thread 4 bound to OS proc set 4
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 9978 thread 6 bound to OS proc set 6
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 9979 thread 7 bound to OS proc set 7
+Using TensorFlow backend.
+src/turn_off_conv.py:45: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  info.isPredictor[info.index.isin(predictors)] = 1 ## to know which are the predictors
+src/turn_off_conv.py:59: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  y_tr1[y_tr1.columns.difference(predictors)] = 0.0
+/home/roi/miniconda3/envs/solar/lib/python3.7/site-packages/pandas/core/frame.py:3395: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self.loc._setitem_with_indexer((slice(None), indexer), value)
+/home/roi/miniconda3/envs/solar/lib/python3.7/site-packages/pandas/core/frame.py:3367: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._setitem_array(key, value)
+src/turn_off_conv.py:61: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  y_te1[y_te1.columns.difference(predictors)] = 0.0
+WARNING:tensorflow:From /home/roi/miniconda3/envs/solar/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+WARNING:tensorflow:From /home/roi/miniconda3/envs/solar/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+WARNING:tensorflow:From /home/roi/miniconda3/envs/solar/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2019-06-20 15:42:48.277126: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2019-06-20 15:42:48.280260: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2999845000 Hz
+2019-06-20 15:42:48.280331: I tensorflow/compiler/xla/service/service.cc:150] XLA service 0x55b1e52ab310 executing computations on platform Host. Devices:
+2019-06-20 15:42:48.280342: I tensorflow/compiler/xla/service/service.cc:158]   StreamExecutor device (0): <undefined>, <undefined>
+2019-06-20 15:42:48.280393: I tensorflow/core/common_runtime/process_util.cc:71] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 9989 thread 8 bound to OS proc set 8
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10012 thread 9 bound to OS proc set 9
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10013 thread 10 bound to OS proc set 10
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10015 thread 12 bound to OS proc set 12
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10014 thread 11 bound to OS proc set 11
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10016 thread 13 bound to OS proc set 13
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10019 thread 16 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10017 thread 14 bound to OS proc set 14
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10018 thread 15 bound to OS proc set 15
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 9990 thread 17 bound to OS proc set 1
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10020 thread 18 bound to OS proc set 2
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10023 thread 21 bound to OS proc set 5
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10022 thread 20 bound to OS proc set 4
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10021 thread 19 bound to OS proc set 3
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10024 thread 22 bound to OS proc set 6
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10025 thread 23 bound to OS proc set 7
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10026 thread 24 bound to OS proc set 8
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10027 thread 25 bound to OS proc set 9
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10028 thread 26 bound to OS proc set 10
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10029 thread 27 bound to OS proc set 11
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10032 thread 30 bound to OS proc set 14
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10031 thread 29 bound to OS proc set 13
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10030 thread 28 bound to OS proc set 12
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10034 thread 32 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 9965 tid 10033 thread 31 bound to OS proc set 15
+src/turn_off_conv.py:152: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  info.MAE[info.index == target_sensor] = test_loss
+<bound method NDFrame.head of location                   AP7  AP6  AP4  AP5  ...       DH6  DH7       DH9  DH1
+Datetime                                       ...                              
+2010-03-19 14:16:00-10:00  0.0  0.0  0.0  0.0  ...  1.137295  0.0  1.048495  0.0
+2010-03-19 14:17:00-10:00  0.0  0.0  0.0  0.0  ...  1.108420  0.0  0.466063  0.0
+2010-03-19 14:18:00-10:00  0.0  0.0  0.0  0.0  ...  0.340818  0.0  0.323264  0.0
+2010-03-19 14:19:00-10:00  0.0  0.0  0.0  0.0  ...  0.877396  0.0  1.211603  0.0
+2010-03-19 14:20:00-10:00  0.0  0.0  0.0  0.0  ...  1.186350  0.0  1.198489  0.0
+2010-03-19 14:21:00-10:00  0.0  0.0  0.0  0.0  ...  1.177415  0.0  1.195558  0.0
+2010-03-19 14:22:00-10:00  0.0  0.0  0.0  0.0  ...  1.161438  0.0  1.197963  0.0
+2010-03-19 14:23:00-10:00  0.0  0.0  0.0  0.0  ...  1.156412  0.0  1.188729  0.0
+2010-03-19 14:24:00-10:00  0.0  0.0  0.0  0.0  ...  1.122005  0.0  1.135286  0.0
+2010-03-19 14:25:00-10:00  0.0  0.0  0.0  0.0  ...  0.349593  0.0  0.346994  0.0
+2010-03-19 14:26:00-10:00  0.0  0.0  0.0  0.0  ...  0.361500  0.0  0.362209  0.0
+2010-03-19 14:27:00-10:00  0.0  0.0  0.0  0.0  ...  0.386753  0.0  0.401273  0.0
+2010-03-19 14:28:00-10:00  0.0  0.0  0.0  0.0  ...  0.922552  0.0  1.083169  0.0
+2010-03-19 14:29:00-10:00  0.0  0.0  0.0  0.0  ...  1.191863  0.0  1.186352  0.0
+2010-03-19 14:30:00-10:00  0.0  0.0  0.0  0.0  ...  0.810632  0.0  0.748555  0.0
+2010-03-19 14:31:00-10:00  0.0  0.0  0.0  0.0  ...  0.581527  0.0  0.885802  0.0
+2010-03-19 14:32:00-10:00  0.0  0.0  0.0  0.0  ...  0.859714  0.0  0.772134  0.0
+2010-03-19 14:33:00-10:00  0.0  0.0  0.0  0.0  ...  1.065400  0.0  0.910985  0.0
+2010-03-19 14:34:00-10:00  0.0  0.0  0.0  0.0  ...  0.596881  0.0  0.557674  0.0
+2010-03-19 14:35:00-10:00  0.0  0.0  0.0  0.0  ...  0.694389  0.0  0.589172  0.0
+2010-03-19 14:36:00-10:00  0.0  0.0  0.0  0.0  ...  0.398555  0.0  0.376526  0.0
+2010-03-19 14:37:00-10:00  0.0  0.0  0.0  0.0  ...  0.374315  0.0  0.523283  0.0
+2010-03-19 14:38:00-10:00  0.0  0.0  0.0  0.0  ...  0.774217  0.0  1.101818  0.0
+2010-03-19 14:39:00-10:00  0.0  0.0  0.0  0.0  ...  1.165835  0.0  1.118985  0.0
+2010-03-19 14:40:00-10:00  0.0  0.0  0.0  0.0  ...  0.691320  0.0  0.824976  0.0
+2010-03-19 14:41:00-10:00  0.0  0.0  0.0  0.0  ...  1.035129  0.0  0.726990  0.0
+2010-03-19 14:42:00-10:00  0.0  0.0  0.0  0.0  ...  0.791550  0.0  0.607358  0.0
+2010-03-19 14:43:00-10:00  0.0  0.0  0.0  0.0  ...  0.551684  0.0  0.547393  0.0
+2010-03-19 14:44:00-10:00  0.0  0.0  0.0  0.0  ...  0.457079  0.0  0.514338  0.0
+2010-03-19 14:45:00-10:00  0.0  0.0  0.0  0.0  ...  0.693897  0.0  0.963482  0.0
+...                        ...  ...  ...  ...  ...       ...  ...       ...  ...
+2011-07-31 17:01:00-10:00  0.0  0.0  0.0  0.0  ...  0.672724  0.0  0.646885  0.0
+2011-07-31 17:02:00-10:00  0.0  0.0  0.0  0.0  ...  0.664139  0.0  0.640959  0.0
+2011-07-31 17:03:00-10:00  0.0  0.0  0.0  0.0  ...  0.654455  0.0  0.630373  0.0
+2011-07-31 17:04:00-10:00  0.0  0.0  0.0  0.0  ...  0.647969  0.0  0.625082  0.0
+2011-07-31 17:05:00-10:00  0.0  0.0  0.0  0.0  ...  0.647946  0.0  0.625809  0.0
+2011-07-31 17:06:00-10:00  0.0  0.0  0.0  0.0  ...  0.657163  0.0  0.635973  0.0
+2011-07-31 17:07:00-10:00  0.0  0.0  0.0  0.0  ...  0.659402  0.0  0.640170  0.0
+2011-07-31 17:08:00-10:00  0.0  0.0  0.0  0.0  ...  0.658960  0.0  0.635627  0.0
+2011-07-31 17:09:00-10:00  0.0  0.0  0.0  0.0  ...  0.637747  0.0  0.616159  0.0
+2011-07-31 17:10:00-10:00  0.0  0.0  0.0  0.0  ...  0.624108  0.0  0.602032  0.0
+2011-07-31 17:11:00-10:00  0.0  0.0  0.0  0.0  ...  0.620879  0.0  0.598086  0.0
+2011-07-31 17:12:00-10:00  0.0  0.0  0.0  0.0  ...  0.618761  0.0  0.594829  0.0
+2011-07-31 17:13:00-10:00  0.0  0.0  0.0  0.0  ...  0.618327  0.0  0.592261  0.0
+2011-07-31 17:14:00-10:00  0.0  0.0  0.0  0.0  ...  0.612347  0.0  0.584869  0.0
+2011-07-31 17:15:00-10:00  0.0  0.0  0.0  0.0  ...  0.600757  0.0  0.576060  0.0
+2011-07-31 17:16:00-10:00  0.0  0.0  0.0  0.0  ...  0.594727  0.0  0.568610  0.0
+2011-07-31 17:17:00-10:00  0.0  0.0  0.0  0.0  ...  0.587553  0.0  0.562528  0.0
+2011-07-31 17:18:00-10:00  0.0  0.0  0.0  0.0  ...  0.579223  0.0  0.555029  0.0
+2011-07-31 17:19:00-10:00  0.0  0.0  0.0  0.0  ...  0.578827  0.0  0.555966  0.0
+2011-07-31 17:20:00-10:00  0.0  0.0  0.0  0.0  ...  0.577317  0.0  0.553405  0.0
+2011-07-31 17:21:00-10:00  0.0  0.0  0.0  0.0  ...  0.570667  0.0  0.546587  0.0
+2011-07-31 17:22:00-10:00  0.0  0.0  0.0  0.0  ...  0.567454  0.0  0.541886  0.0
+2011-07-31 17:23:00-10:00  0.0  0.0  0.0  0.0  ...  0.559039  0.0  0.532872  0.0
+2011-07-31 17:24:00-10:00  0.0  0.0  0.0  0.0  ...  0.560475  0.0  0.539683  0.0
+2011-07-31 17:25:00-10:00  0.0  0.0  0.0  0.0  ...  0.557871  0.0  0.531369  0.0
+2011-07-31 17:26:00-10:00  0.0  0.0  0.0  0.0  ...  0.561160  0.0  0.205418  0.0
+2011-07-31 17:27:00-10:00  0.0  0.0  0.0  0.0  ...  0.560389  0.0  0.538779  0.0
+2011-07-31 17:28:00-10:00  0.0  0.0  0.0  0.0  ...  0.554313  0.0  0.462038  0.0
+2011-07-31 17:29:00-10:00  0.0  0.0  0.0  0.0  ...  0.185523  0.0  0.145684  0.0
+2011-07-31 17:30:00-10:00  0.0  0.0  0.0  0.0  ...  0.548700  0.0  0.521867  0.0
+
+[299595 rows x 16 columns]>
+MAE_val  [0.1311581208925928, 0.0834274024731034, 0.035721013669694816, 0.07348764138428301, 0.12791024890537972]
+MAE_test  0.09341001289046329
+OMP: Info #212: KMP_AFFINITY: decoding x2APIC ids.
+OMP: Info #210: KMP_AFFINITY: Affinity capable, using global cpuid leaf 11 info
+OMP: Info #154: KMP_AFFINITY: Initial OS proc set respected: 0-15
+OMP: Info #156: KMP_AFFINITY: 16 available OS procs
+OMP: Info #157: KMP_AFFINITY: Uniform topology
+OMP: Info #179: KMP_AFFINITY: 1 packages x 8 cores/pkg x 2 threads/core (8 total cores)
+OMP: Info #214: KMP_AFFINITY: OS proc to physical thread map:
+OMP: Info #171: KMP_AFFINITY: OS proc 0 maps to package 0 core 0 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 8 maps to package 0 core 0 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 1 maps to package 0 core 1 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 9 maps to package 0 core 1 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 2 maps to package 0 core 2 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 10 maps to package 0 core 2 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 3 maps to package 0 core 3 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 11 maps to package 0 core 3 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 4 maps to package 0 core 4 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 12 maps to package 0 core 4 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 5 maps to package 0 core 5 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 13 maps to package 0 core 5 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 6 maps to package 0 core 6 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 14 maps to package 0 core 6 thread 1 
+OMP: Info #171: KMP_AFFINITY: OS proc 7 maps to package 0 core 7 thread 0 
+OMP: Info #171: KMP_AFFINITY: OS proc 15 maps to package 0 core 7 thread 1 
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11489 thread 0 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11497 thread 1 bound to OS proc set 1
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11500 thread 4 bound to OS proc set 4
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11499 thread 3 bound to OS proc set 3
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11498 thread 2 bound to OS proc set 2
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11501 thread 5 bound to OS proc set 5
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11502 thread 6 bound to OS proc set 6
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11503 thread 7 bound to OS proc set 7
+Using TensorFlow backend.
+src/turn_off_conv.py:45: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  info.isPredictor[info.index.isin(predictors)] = 1 ## to know which are the predictors
+src/turn_off_conv.py:59: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  y_tr1[y_tr1.columns.difference(predictors)] = 0.0
+/home/roi/miniconda3/envs/solar/lib/python3.7/site-packages/pandas/core/frame.py:3395: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self.loc._setitem_with_indexer((slice(None), indexer), value)
+/home/roi/miniconda3/envs/solar/lib/python3.7/site-packages/pandas/core/frame.py:3367: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  self._setitem_array(key, value)
+src/turn_off_conv.py:61: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  y_te1[y_te1.columns.difference(predictors)] = 0.0
+WARNING:tensorflow:From /home/roi/miniconda3/envs/solar/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+WARNING:tensorflow:From /home/roi/miniconda3/envs/solar/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:3445: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+WARNING:tensorflow:From /home/roi/miniconda3/envs/solar/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2019-06-20 15:50:21.842043: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2019-06-20 15:50:21.845436: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2999845000 Hz
+2019-06-20 15:50:21.845513: I tensorflow/compiler/xla/service/service.cc:150] XLA service 0x56552c691fe0 executing computations on platform Host. Devices:
+2019-06-20 15:50:21.845524: I tensorflow/compiler/xla/service/service.cc:158]   StreamExecutor device (0): <undefined>, <undefined>
+2019-06-20 15:50:21.845578: I tensorflow/core/common_runtime/process_util.cc:71] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11520 thread 8 bound to OS proc set 8
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11543 thread 9 bound to OS proc set 9
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11544 thread 10 bound to OS proc set 10
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11545 thread 11 bound to OS proc set 11
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11547 thread 13 bound to OS proc set 13
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11550 thread 15 bound to OS proc set 15
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11521 thread 17 bound to OS proc set 1
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11548 thread 14 bound to OS proc set 14
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11551 thread 16 bound to OS proc set 0
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11546 thread 12 bound to OS proc set 12
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11552 thread 18 bound to OS proc set 2
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11554 thread 20 bound to OS proc set 4
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11555 thread 21 bound to OS proc set 5
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11553 thread 19 bound to OS proc set 3
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11556 thread 22 bound to OS proc set 6
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11557 thread 23 bound to OS proc set 7
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11558 thread 24 bound to OS proc set 8
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11559 thread 25 bound to OS proc set 9
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11560 thread 26 bound to OS proc set 10
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11562 thread 28 bound to OS proc set 12
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11561 thread 27 bound to OS proc set 11
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11563 thread 29 bound to OS proc set 13
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11564 thread 30 bound to OS proc set 14
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11565 thread 31 bound to OS proc set 15
+OMP: Info #250: KMP_AFFINITY: pid 11489 tid 11566 thread 32 bound to OS proc set 0
+src/turn_off_conv.py:152: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  info.MAE[info.index == target_sensor] = test_loss
+<bound method NDFrame.head of location                        AP7       AP6  ...  DH9       DH1
+Datetime                                       ...               
+2010-03-19 14:16:00-10:00  0.363748  0.363514  ...  0.0  0.392540
+2010-03-19 14:17:00-10:00  0.372678  0.345625  ...  0.0  0.709852
+2010-03-19 14:18:00-10:00  0.570826  0.419070  ...  0.0  1.164115
+2010-03-19 14:19:00-10:00  1.192898  1.117804  ...  0.0  1.164925
+2010-03-19 14:20:00-10:00  0.343076  1.232080  ...  0.0  1.160577
+2010-03-19 14:21:00-10:00  0.302360  1.022373  ...  0.0  1.170989
+2010-03-19 14:22:00-10:00  0.294066  0.518402  ...  0.0  1.160383
+2010-03-19 14:23:00-10:00  0.300996  0.293821  ...  0.0  1.172287
+2010-03-19 14:24:00-10:00  0.320363  0.290323  ...  0.0  1.133981
+2010-03-19 14:25:00-10:00  0.352584  0.302091  ...  0.0  0.402412
+2010-03-19 14:26:00-10:00  0.407706  0.323914  ...  0.0  0.449898
+2010-03-19 14:27:00-10:00  0.466088  0.350585  ...  0.0  0.534409
+2010-03-19 14:28:00-10:00  0.485565  0.384518  ...  0.0  1.260559
+2010-03-19 14:29:00-10:00  0.839356  0.439406  ...  0.0  0.530795
+2010-03-19 14:30:00-10:00  1.030661  0.525748  ...  0.0  1.018727
+2010-03-19 14:31:00-10:00  0.647867  0.492152  ...  0.0  1.203674
+2010-03-19 14:32:00-10:00  1.033590  1.205149  ...  0.0  0.677904
+2010-03-19 14:33:00-10:00  0.702388  1.239166  ...  0.0  0.574385
+2010-03-19 14:34:00-10:00  0.540826  1.237315  ...  0.0  0.546083
+2010-03-19 14:35:00-10:00  0.401679  0.822308  ...  0.0  0.432765
+2010-03-19 14:36:00-10:00  0.551411  0.519132  ...  0.0  0.770879
+2010-03-19 14:37:00-10:00  0.539980  0.451533  ...  0.0  1.059540
+2010-03-19 14:38:00-10:00  0.665316  0.397609  ...  0.0  1.034031
+2010-03-19 14:39:00-10:00  0.735072  0.743866  ...  0.0  0.839307
+2010-03-19 14:40:00-10:00  1.134051  0.605101  ...  0.0  0.923437
+2010-03-19 14:41:00-10:00  0.631558  0.509903  ...  0.0  0.643231
+2010-03-19 14:42:00-10:00  0.667052  1.145034  ...  0.0  0.511719
+2010-03-19 14:43:00-10:00  1.052463  0.785494  ...  0.0  0.865974
+2010-03-19 14:44:00-10:00  1.141236  0.604732  ...  0.0  1.189288
+2010-03-19 14:45:00-10:00  1.179899  0.716576  ...  0.0  1.168276
+...                             ...       ...  ...  ...       ...
+2011-07-31 17:01:00-10:00  0.653109  0.690851  ...  0.0  0.647173
+2011-07-31 17:02:00-10:00  0.644765  0.665624  ...  0.0  0.640641
+2011-07-31 17:03:00-10:00  0.642979  0.644112  ...  0.0  0.634095
+2011-07-31 17:04:00-10:00  0.646164  0.637376  ...  0.0  0.634117
+2011-07-31 17:05:00-10:00  0.649951  0.636710  ...  0.0  0.638748
+2011-07-31 17:06:00-10:00  0.651025  0.637178  ...  0.0  0.648541
+2011-07-31 17:07:00-10:00  0.637681  0.632111  ...  0.0  0.653311
+2011-07-31 17:08:00-10:00  0.622604  0.620332  ...  0.0  0.644787
+2011-07-31 17:09:00-10:00  0.618086  0.615234  ...  0.0  0.626956
+2011-07-31 17:10:00-10:00  0.614126  0.101876  ...  0.0  0.615237
+2011-07-31 17:11:00-10:00  0.619755  0.610665  ...  0.0  0.609176
+2011-07-31 17:12:00-10:00  0.612442  0.609535  ...  0.0  0.605187
+2011-07-31 17:13:00-10:00  0.601696  0.613551  ...  0.0  0.603817
+2011-07-31 17:14:00-10:00  0.594890  0.606775  ...  0.0  0.594589
+2011-07-31 17:15:00-10:00  0.584629  0.587935  ...  0.0  0.468258
+2011-07-31 17:16:00-10:00  0.580067  0.577620  ...  0.0  0.481249
+2011-07-31 17:17:00-10:00  0.576083  0.571884  ...  0.0  0.577299
+2011-07-31 17:18:00-10:00  0.574418  0.568453  ...  0.0  0.571687
+2011-07-31 17:19:00-10:00  0.573939  0.568530  ...  0.0  0.576248
+2011-07-31 17:20:00-10:00  0.569983  0.563954  ...  0.0  0.572266
+2011-07-31 17:21:00-10:00  0.561330  0.560555  ...  0.0  0.568824
+2011-07-31 17:22:00-10:00  0.557947  0.558343  ...  0.0  0.560507
+2011-07-31 17:23:00-10:00  0.569975  0.560898  ...  0.0  0.347550
+2011-07-31 17:24:00-10:00  0.558938  0.562912  ...  0.0  0.171021
+2011-07-31 17:25:00-10:00  0.228465  0.560798  ...  0.0  0.549641
+2011-07-31 17:26:00-10:00  0.378010  0.552081  ...  0.0  0.115109
+2011-07-31 17:27:00-10:00  0.562265  0.542714  ...  0.0  0.446580
+2011-07-31 17:28:00-10:00  0.548105  0.541806  ...  0.0  0.126321
+2011-07-31 17:29:00-10:00  0.544212  0.539710  ...  0.0  0.119105
+2011-07-31 17:30:00-10:00  0.535416  0.532718  ...  0.0  0.107307
+
+[299595 rows x 16 columns]>
+MAE_val  [0.0970149051108861, 0.06450983656144009, 0.03297808204333551, 0.06188779576585087, 0.09630412397813522]
+MAE_test  0.07389281699622886
