@@ -2,6 +2,7 @@ library(reticulate)
 library(ggplot2)
 library(RColorBrewer)
 library(ggmap)
+library(reshape2)
 
 data = read.csv("results/all.csv")
 
@@ -46,7 +47,48 @@ plot_all = function(df, name="model"){
                 plot.background=element_blank())
   return(p)
 }
-
+#
+plot_facet = function(df){
+  df_m = melt(data, id.vars = c("Location", "Latitude", "Longitude"))
+  ## Remove wrong model
+  df_m = df_m[df_m$variable != "GPconstant_Conv2D_LSTM_3times",]
+  ##
+  eps = 0.001
+  hawaii <- get_stamenmap(bbox = c(left = min(df_m$Longitude) - eps, bottom = min(df_m$Latitude) - eps, 
+                                   right = max(df_m$Longitude) + eps, top = max(df_m$Latitude) + eps), zoom = 15)
+  
+  
+  #myPalette <- colorRampPalette(rev(brewer.pal(12, "Spectral")))
+  #sc <- scale_colour_gradientn(colours = myPalette(10), limits=c(0, 0.1))
+  
+  p = ggmap(hawaii)
+  p = p + geom_point(aes(Longitude, Latitude,color=value, size=value), data=df_m, shape = 16) 
+  #
+  p = p + geom_text(aes(Longitude, Latitude, label=Location), data=df, size=3, hjust=0.001, vjust=0.001)
+  #
+  p = p + facet_wrap(~ variable, ncol=2)
+  #
+  p = p + labs(color='MAE', size="Values") 
+  #
+  p = p + theme(plot.title = element_text(hjust = 0.5))
+  #
+  p = p + xlab("Longitude") + ylab("Latitude")
+  #
+  p = p + theme(axis.line=element_blank(),
+                axis.text.x=element_blank(),
+                axis.text.y=element_blank(),
+                axis.ticks=element_blank(),
+                #axis.title.x=element_blank(),
+                #axis.title.y=element_blank(),
+                #legend.position="none",
+                panel.background=element_blank(),
+                panel.border=element_blank(),
+                panel.grid.major=element_blank(),
+                panel.grid.minor=element_blank(),
+                plot.background=element_blank())
+  return(p)
+}
+#
 plot_net = function(df, target_sensor, predictors){
   target = df[df$Location == target_sensor,]
   
@@ -91,6 +133,7 @@ plot_net = function(df, target_sensor, predictors){
   return(p)
 }
 
+
 models = names(data)[4:length(names(data))]
 for(i in 1:length(models)){
   mod = as.character(models[i])
@@ -100,4 +143,7 @@ for(i in 1:length(models)){
   path = paste0("img/", mod, ".png")
   ggsave(p, filename = path, device="png", dpi = 600)
 }
+
+
+
 
