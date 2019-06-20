@@ -10,7 +10,7 @@ DH10_SW = read.csv("results/DH10_SW.csv")
 
 
 target_sensor = "DH10"
-predictors =  as.character(DH10_SW$Location[DH10_SW$isPredictor == 1])
+predictors =  as.character(DH10_NE$Location[DH10_NE$isPredictor == 1])
 
 plot_all = function(df, name="model"){
 
@@ -149,4 +149,4 @@ for(i in 1:length(models)){
 
 
 p = plot_facet(data)
-ggsave(p, filename = "img/facet.png", device="png", dpi = 600)
+ggsave(p, filename = "img/**.png", device="png", dpi = 600)
