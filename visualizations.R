@@ -5,11 +5,11 @@ library(ggmap)
 library(reshape2)
 
 data = read.csv("results/all.csv")
+DH10_NE = read.csv("results/DH10_NE.csv")
 
-target_sensor = "DH3"
-predictors = c("AP1", "AP4",  "AP5",  "AP6",  "AP7",  "DH1",
-               "DH10", "DH11", "DH2",  "DH4",  "DH5",
-               "DH6", "DH7",  "DH8",  "DH9" )
+DH10_NE$MAE[DH10_NE$Location == "DH10"] = 0.07
+target_sensor = "DH10"
+predictors =  as.character(DH10_NE$Location[DH10_NE$isPredictor == 1])
 
 plot_all = function(df, name="model"){
 
@@ -112,7 +112,7 @@ plot_net = function(df, target_sensor, predictors){
   #
   p = p + scale_color_gradient2(limits=c(0,0.1))
   #
-  p = p + geom_point(aes(x=Longitude, y=Latitude, size=conv1D_lat, color=conv1D_lat), data=target) 
+  p = p + geom_point(aes(x=Longitude, y=Latitude, size=MAE, color=MAE), data=target) 
   #
   p = p + labs(color='MAE', size="Value") 
   #
@@ -145,5 +145,5 @@ for(i in 1:length(models)){
 }
 
 
-
-
+p = plot_facet(data)
+ggsave(p, filename = "img/facet.png", device="png", dpi = 600)
