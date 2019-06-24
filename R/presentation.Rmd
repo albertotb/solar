@@ -79,25 +79,41 @@ cs %>%
 
 ---
 
-## Sensor correlations
+## 1D Convolutional Model
+
+* To predict each sensor, we use information of the rest. 
+
+* We plot MAE for different sensors.
 
 ![](../img/conv1D_lon.png)
 
 ---
 
-class: center, middle
+## Local 2D Convolutional Model
 
-![](../img/conv1D_lon_lat.png)
+* Kriging to create irradiance map.
+
+* Same spatial pattern.
+
+![](../img/GPtorch_LocCon2D_LSTM_periods9.png)
 
 ---
 
-class: center, middle
+## Effect of removing sensors
+
+* We choose DH10 as target.
+
+* Removing sensors in the North East, increases MAE.
 
 ![](../img/turnoff_NE.png)
 
 ---
 
-class: center, middle
+## Effect of removing sensors
+
+* Sensors in the South West, do not help in the prediction.
+
+* Wind influence?
 
 
 ![](../img/turnoff_SW.png)
@@ -105,6 +121,8 @@ class: center, middle
 ---
 
 ## Wind data
+
+* SW-NE is precisely the average wind direction.
 
 ![](../img/combined_plot.png)
 
