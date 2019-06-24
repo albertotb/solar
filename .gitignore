@@ -3,3 +3,6 @@ data/
 __pycache__
 *.log
 *.dat
+.Rproj.user
+.Rhistory
+nohup.out
