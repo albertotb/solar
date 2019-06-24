@@ -52,7 +52,7 @@
 
 1. Run notebook `notebooks/results_conv.py`. This will collect all `*.pkl` files in the `/results` folder and output a CSV file
 
-2. Add results to presentation in `R/presentation.Rmd`
+2. Add results to [presentation](./R/presentation.html) in `R/presentation.Rmd`
 
 
 ## Dependencies
