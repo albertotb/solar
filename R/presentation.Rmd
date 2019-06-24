@@ -14,10 +14,6 @@ output:
       beforeInit: "macros.js"
 ---
 
-```{r include=FALSE}
-library(dplyr)
-library(tidyr)
-```
 
 
 # Data preprocessing
@@ -72,6 +68,7 @@ library(tidyr)
 ## Comparison between models
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
 cs <- read.table('../results/clearsky.txt')
 
 cs %>%
@@ -109,13 +106,15 @@ class: center, middle
 
 ## Wind data
 
-![](../img/Clear_dataset-1.png)
+![](../img/combined_plot.png)
 
 ---
 
 ## Results
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(tidyr)
 data <- read.csv("../results/all.csv")
 
 data %>%
