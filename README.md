@@ -47,6 +47,14 @@
     * GPtorch_LocCon2D_LSTM_periods9: Same, but using GP trained in PyTorch.
     * GPconstant_LocCon2D_Dense_periods3: Train with GP as input X. LocCon2D using timestamps as channels. Then Dense Layer. Here the number of parameter scales with periods.
 
+
+## Results
+
+1. Run notebook `notebooks/results_conv.py`. This will collect all `*.pkl` files in the `/results` folder and output a CSV file
+
+2. Add results to presentation in `R/presentation.Rmd`
+
+
 ## Dependencies
 
 Create conda environment with:
