@@ -1,0 +1,65 @@
+---
+title: "Solar Irradiance Prediction"
+subtitle: "OAHU case study"
+author: "ICMAT-CSIC"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "custom.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+---
+
+# Data preprocessing
+
+* Original data from the [NREL](https://data.nrel.gov/submissions/11)
+
+* Solar power plant based in Oahu, Hawaii
+  
+  1. Time resolution 1s
+  
+  2. 16 working sensors (we remove AP3)
+  
+*  Preprocessing:
+
+  1. Resample data from 1s to 1m
+
+  2. Set negative GHI to 0
+  
+  3. Filter always sunlight hours (7:30 - 17:30)
+
+* Split:
+
+  1. Training set: March 2010 - July 2011
+  
+  2. Test set: August 2011 - November 2011
+  
+---
+
+## Clear sky models
+
+* [Pysolar](https://pysolar.readthedocs.io/en/latest/) library
+
+* [Pvlib](https://pvlib-python.readthedocs.io/en/stable/) library 
+
+  1. Ineichen
+  
+  2. Haurwitz
+  
+  3. Simplified Solis
+
+* Formulas taken from UCM codebase
+
+  1. Haurwitz, $\text{GHI} = 910 \times \sin(\text{altitude})$
+  
+  2. Kasten, $\text{GHI} = 910 \times \sin(\text{altitude}) \times \exp(-0.057 / \sin(\text{altitude}))$
+  
+  
+---
+
+## Comparison between models
+* After rescaling, data should be in [0, 1] range
