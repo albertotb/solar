@@ -103,6 +103,7 @@ class: center, middle
 
 ## Wind data
 
+![](../img/Clear_dataset.pdf)
 
 ---
 
