@@ -57,9 +57,71 @@ output:
   1. Haurwitz, $\text{GHI} = 910 \times \sin(\text{altitude})$
   
   2. Kasten, $\text{GHI} = 910 \times \sin(\text{altitude}) \times \exp(-0.057 / \sin(\text{altitude}))$
-  
+
+
+* After rescaling, data should be in [0, 1] range  
   
 ---
 
 ## Comparison between models
-* After rescaling, data should be in [0, 1] range
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+cs <- read.table('../results/clearsky.txt')
+
+cs %>%
+  .[2:nrow(.),] %>%
+  knitr::kable(., format = "html", digits=4)
+```
+
+
+---
+
+## Sensor correlations
+
+![](../img/conv1D_lon.png)
+
+---
+
+class: center, middle
+
+![](../img/conv1D_lon_lat.png)
+
+---
+
+class: center, middle
+
+![](../img/turnoff_NE.png)
+
+---
+
+class: center, middle
+
+
+![](../img/turnoff_SW.png)
+
+---
+
+## Wind data
+
+
+---
+
+## Results
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(tidyr)
+data <- read.csv("../results/all.csv")
+
+data %>%
+  select(-Latitude, -Longitude) %>%
+  summarize_if(is.numeric, mean) %>%
+  gather(Model, Average_MAE) %>%
+  arrange(Average_MAE) %>%
+  knitr::kable(., format = "html", digits=4)
+```
+
+
+---
+
+## Results on UCM data

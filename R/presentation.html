@@ -63,12 +63,214 @@ class: center, middle, inverse, title-slide
   1. Haurwitz, `\(\text{GHI} = 910 \times \sin(\text{altitude})\)`
   
   2. Kasten, `\(\text{GHI} = 910 \times \sin(\text{altitude}) \times \exp(-0.057 / \sin(\text{altitude}))\)`
-  
+
+
+* After rescaling, data should be in [0, 1] range  
   
 ---
 
 ## Comparison between models
-* After rescaling, data should be in [0, 1] range
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Pysolar &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Ineichen &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Haurwitz &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Solis &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Haurwitz_UCM &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Kasten_UCM &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; mean &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6098 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8726 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7719 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7723 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7692 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8418 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; std &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3392 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4033 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3458 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3452 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3446 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3817 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; min &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 25% &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3188 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4788 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4260 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4266 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4245 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4637 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 50% &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.5616 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0554 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9339 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9586 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9296 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.9689 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 75% &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8689 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.1720 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0448 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0374 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0416 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.1580 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; max &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3.1641 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 29.1443 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.4256 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.4105 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 12.1471 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.9247 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 90% &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.1076 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.2866 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.1437 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.1355 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.1402 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.2714 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 99% &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.3676 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.6320 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.3441 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.3415 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.3396 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.4884 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; %&amp;gt;1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1656 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.5349 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3688 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3820 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.3596 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4724 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+## Sensor correlations
+
+![](../img/conv1D_lon.png)
+
+---
+
+class: center, middle
+
+![](../img/conv1D_lon_lat.png)
+
+---
+
+class: center, middle
+
+![](../img/turnoff_NE.png)
+
+---
+
+class: center, middle
+
+
+![](../img/turnoff_SW.png)
+
+---
+
+## Wind data
+
+
+---
+
+## Results
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Model &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Average_MAE &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GPconstant_LocCon2D_LSTM &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0762 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GPconstant_LocCon2D_LSTM_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0773 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GPconstant_LocCon2D_LSTM_periods3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0775 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; conv1D_lon &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0780 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; conv1D_lon_lat &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0785 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GPtorch_LocCon2D_LSTM_periods3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0839 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GPtorch_LocCon2D_LSTM_periods9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0844 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GPtorch_LocCon2D_LSTM_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0862 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GPtorch_LocCon2D_Dense_periods3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0879 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GPconstant_Conv2D_LSTM_3times &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1159 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; GPconstant_LocCon2D_Dense_periods3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1176 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+## Results on UCM data
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
