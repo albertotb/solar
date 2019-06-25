@@ -4,7 +4,7 @@
     <title>Solar Irradiance Prediction</title>
     <meta charset="utf-8" />
     <meta name="author" content="ICMAT-CSIC" />
-    <meta name="date" content="2019-06-24" />
+    <meta name="date" content="2019-06-25" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Solar Irradiance Prediction
 ## OAHU case study
 ### ICMAT-CSIC
-### 2019-06-24
+### 2019-06-25
 
 ---
 
@@ -189,6 +189,21 @@ class: center, middle, inverse, title-slide
 * We plot MAE for different sensors.
 
 ![](../img/conv1D_lon.png)
+
+---
+
+## GPs to create irradiance map
+
+* Mean for different positions
+
+![:scale 80%](../img/GP_torch_mean.png)
+---
+
+## GPs to create irradiance map
+
+* Variance for different positions
+
+![:scale 80%](../img/GP_torch_std.png)
 
 ---
 
