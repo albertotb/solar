@@ -122,8 +122,9 @@ cs %>%
 
 ## Wind data
 
-![](../img/combined_plot.png)
-
+.center[
+![:scale 90%](../img/combined_plot.png)
+]
 ---
 
 ## Results
@@ -145,3 +146,31 @@ data %>%
 ---
 
 ## Results on UCM data
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(purrr)
+library(readr)
+
+df_res <-
+map(list.files(path = '../results/UCM/', pattern = '*_rmse.csv', full.names = TRUE), 
+    ~read_csv(.) %>% select(-X1))  %>%
+  bind_cols()
+
+loc <- read_csv('../results/UCM/LocCon1DLongLSTM_periods5.csv') %>% select(X1)
+
+
+transpose <- function(df, col, var = "rowid") {
+  col <- enquo(col)
+  gather(df, !!var, value, -!!col) %>%
+    spread(!!col, value)
+}
+
+df_res %>% 
+  bind_cols(., loc) %>%
+  transpose(X1, var = "Model") %>%
+  select(Model, DH6) %>%
+  arrange(DH6) %>%
+  knitr::kable(., format = "html", digits=4)
+```
+

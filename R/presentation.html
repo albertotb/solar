@@ -4,7 +4,7 @@
     <title>Solar Irradiance Prediction</title>
     <meta charset="utf-8" />
     <meta name="author" content="ICMAT-CSIC" />
-    <meta name="date" content="2019-06-24" />
+    <meta name="date" content="2019-06-25" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Solar Irradiance Prediction
 ## OAHU case study
 ### ICMAT-CSIC
-### 2019-06-24
+### 2019-06-25
 
 ---
 
@@ -225,8 +225,9 @@ class: center, middle, inverse, title-slide
 
 ## Wind data
 
-![](../img/combined_plot.png)
-
+.center[
+![:scale 90%](../img/combined_plot.png)
+]
 ---
 
 ## Results
@@ -290,6 +291,57 @@ class: center, middle, inverse, title-slide
 ---
 
 ## Results on UCM data
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Model &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; DH6 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LocCon1DLongLSTMMSE_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0632 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LocCon1DLongResidualSoftmaxMSE_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0658 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LocCon1DLongResidualMSE_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0676 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LocCon2DResidualMSE_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0699 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LocCon2DResidual_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0963 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LocCon1DLongLSTM_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0980 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LocCon1DLongResidualSoftmaxMAE_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1043 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LocCon1DLongResidualSoftmax_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1044 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LocCon1DLongResidual_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1044 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; LocCon1DLongLSTMResidual_periods5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.1482 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
