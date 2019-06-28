@@ -4,9 +4,9 @@ library(RColorBrewer)
 library(ggmap)
 library(reshape2)
 
-data = read.csv("results/all.csv")
-DH10_NE = read.csv("results/DH10_NE.csv")
-DH10_SW = read.csv("results/DH10_SW.csv")
+data = read.csv("results/conv1D_Long1_Lat1.csv")
+# DH10_NE = read.csv("results/DH10_NE.csv")
+# DH10_SW = read.csv("results/DH10_SW.csv")
 
 
 target_sensor = "DH10"
@@ -22,11 +22,11 @@ plot_all = function(df, name="model"){
   #myPalette <- colorRampPalette(rev(brewer.pal(12, "Spectral")))
   #sc <- scale_colour_gradientn(colours = myPalette(10), limits=c(0, 0.1))
   
-  p = ggmap(hawaii) + geom_point(aes(Longitude, Latitude,color=mae, size=mae), data=df, shape = 16) 
+  p = ggmap(hawaii) + geom_point(aes(Longitude, Latitude,color=MAE, size=MAE), data=df, shape = 16) 
   #
   p = p + geom_text(aes(Longitude, Latitude, label=Location), data=df, size=3, hjust=0.001, vjust=0.001)
   #
-  p = p + scale_color_gradient(limits=c(min(df$mae),max(df$mae)))
+  p = p + scale_color_gradient(limits=c(min(df$MAE),max(df$MAE)))
   #
   p = p + labs(title = name, color='MAE', size="Values") 
   #

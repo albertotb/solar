@@ -37,7 +37,7 @@ info = info.drop("AP3")
 info = info[["Longitude", "Latitude"]]
 info["MAE"] = 0 ## to store MAEs
 ##
-u = np.array([1,1]) # Direction to order sensors. (1,0) = Longitude, (0,1) = Latitude
+u = np.array([-1,1]) # Direction to order sensors. (1,0) = Longitude, (0,1) = Latitude
 norm_u = np.sqrt(np.sum(u**2))
 u_n = u/norm_u
 ##
@@ -117,7 +117,7 @@ def train_and_test_sensor(idx_sensor, id_sensor, n_sensors, use_lat=False):
 
     test_loss = c3.history['val_loss'][-1]
 
-    model.save('../models/conv1D_{}_{:1d}.h5'.format(id_sensor, use_lat))
+    #model.save('../models/conv1D_{}_{:1d}.h5'.format(id_sensor, use_lat))
 
     print('MAE_val ', cv_loss)
     print('MAE_test ', test_loss)
