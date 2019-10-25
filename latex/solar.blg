@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/dev/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: solar.aux
+The style file: template/mdpi.bst
+Database file #1: references.bib
+Warning--empty journal in gers1999learning
+Warning--there's a number but no series in pinheiro2014recurrent
+Warning--empty booktitle in Rumelhart:1986:LIR:104279.104293
+You've used 15 entries,
+            2865 wiz_defined-function locations,
+            644 strings with 7017 characters,
+and the built_in function-call counts, 6294 in all, are:
+= -- 513
+> -- 395
+< -- 12
++ -- 148
+- -- 118
+* -- 495
+:= -- 1000
+add.period$ -- 43
+call.type$ -- 15
+change.case$ -- 15
+chr.to.int$ -- 15
+cite$ -- 18
+duplicate$ -- 306
+empty$ -- 527
+format.name$ -- 138
+if$ -- 1357
+int.to.chr$ -- 1
+int.to.str$ -- 15
+missing$ -- 15
+newline$ -- 76
+num.names$ -- 45
+pop$ -- 139
+preamble$ -- 0
+purify$ -- 15
+quote$ -- 0
+skip$ -- 191
+stack$ -- 0
+substring$ -- 254
+swap$ -- 85
+text.length$ -- 7
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 102
+warning$ -- 3
+while$ -- 49
+width$ -- 0
+write$ -- 182
+(There were 3 warnings)

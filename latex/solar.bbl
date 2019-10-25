@@ -1,0 +1,95 @@
+\begin{thebibliography}{-------}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[Goodfellow \em{et~al.}(2016)Goodfellow, Bengio, and
+  Courville]{Goodfellow-et-al-2016}
+Goodfellow, I.; Bengio, Y.; Courville, A.
+\newblock {\em Deep Learning}; MIT Press,  2016.
+\newblock \url{http://www.deeplearningbook.org}.
+
+\bibitem[Abadi \em{et~al.}(2016)Abadi, Barham, Chen, Chen, Davis, Dean, Devin,
+  Ghemawat, Irving, Isard, et~al.]{abadi2016tensorflow}
+Abadi, M.; Barham, P.; Chen, J.; Chen, Z.; Davis, A.; Dean, J.; Devin, M.;
+  Ghemawat, S.; Irving, G.; Isard, M.; others.
+\newblock Tensorflow: A system for large-scale machine learning.
+\newblock  12th $\{$USENIX$\}$ Symposium on Operating Systems Design and
+  Implementation ($\{$OSDI$\}$ 16),  2016, pp. 265--283.
+
+\bibitem[Chollet \em{et~al.}(2015)Chollet et~al.]{chollet2015keras}
+Chollet, F.; others.
+\newblock Keras,  2015.
+
+\bibitem[Krizhevsky \em{et~al.}(2012)Krizhevsky, Sutskever, and
+  Hinton]{krizhevsky2012imagenet}
+Krizhevsky, A.; Sutskever, I.; Hinton, G.E.
+\newblock Imagenet classification with deep convolutional neural networks.
+\newblock  Advances in neural information processing systems,  2012, pp.
+  1097--1105.
+
+\bibitem[Ji \em{et~al.}(2012)Ji, Xu, Yang, and Yu]{ji20123d}
+Ji, S.; Xu, W.; Yang, M.; Yu, K.
+\newblock 3D convolutional neural networks for human action recognition.
+\newblock {\em IEEE transactions on pattern analysis and machine intelligence}
+  {\bf 2012}, {\em 35},~221--231.
+
+\bibitem[Karpathy \em{et~al.}(2014)Karpathy, Toderici, Shetty, Leung,
+  Sukthankar, and Fei-Fei]{karpathy2014large}
+Karpathy, A.; Toderici, G.; Shetty, S.; Leung, T.; Sukthankar, R.; Fei-Fei, L.
+\newblock Large-scale video classification with convolutional neural networks.
+\newblock  Proceedings of the IEEE conference on Computer Vision and Pattern
+  Recognition,  2014, pp. 1725--1732.
+
+\bibitem[Abdel-Hamid \em{et~al.}(2014)Abdel-Hamid, Mohamed, Jiang, Deng, Penn,
+  and Yu]{abdel2014convolutional}
+Abdel-Hamid, O.; Mohamed, A.r.; Jiang, H.; Deng, L.; Penn, G.; Yu, D.
+\newblock Convolutional neural networks for speech recognition.
+\newblock {\em IEEE/ACM Transactions on audio, speech, and language processing}
+  {\bf 2014}, {\em 22},~1533--1545.
+
+\bibitem[Kim(2014)]{kim2014convolutional}
+Kim, Y.
+\newblock Convolutional neural networks for sentence classification.
+\newblock {\em arXiv preprint arXiv:1408.5882} {\bf 2014}.
+
+\bibitem[Rasmussen(2003)]{rasmussen2003gaussian}
+Rasmussen, C.E.
+\newblock Gaussian processes in machine learning.
+\newblock  Summer School on Machine Learning. Springer,  2003, pp. 63--71.
+
+\bibitem[Gers \em{et~al.}(1999)Gers, Schmidhuber, and
+  Cummins]{gers1999learning}
+Gers, F.A.; Schmidhuber, J.; Cummins, F.
+\newblock Learning to forget: Continual prediction with LSTM {\bf 1999}.
+
+\bibitem[Pinheiro and Collobert(2014)]{pinheiro2014recurrent}
+Pinheiro, P.H.; Collobert, R.
+\newblock Recurrent convolutional neural networks for scene labeling.
+\newblock  31st International Conference on Machine Learning (ICML),  2014,
+  number CONF.
+
+\bibitem[Lai \em{et~al.}(2015)Lai, Xu, Liu, and Zhao]{lai2015recurrent}
+Lai, S.; Xu, L.; Liu, K.; Zhao, J.
+\newblock Recurrent convolutional neural networks for text classification.
+\newblock  Twenty-ninth AAAI conference on artificial intelligence,  2015.
+
+\bibitem[Rumelhart \em{et~al.}(1986)Rumelhart, Hinton, and
+  Williams]{Rumelhart:1986:LIR:104279.104293}
+Rumelhart, D.E.; Hinton, G.E.; Williams, R.J.
+\newblock Parallel Distributed Processing: Explorations in the Microstructure
+  of Cognition, Vol. 1; MIT Press: Cambridge, MA, USA,  1986; chapter Learning
+  Internal Representations by Error Propagation, pp. 318--362.
+
+\bibitem[Kingma and Ba(2014)]{kingma2014adam}
+Kingma, D.P.; Ba, J.
+\newblock Adam: A method for stochastic optimization.
+\newblock {\em arXiv preprint arXiv:1412.6980} {\bf 2014}.
+
+\bibitem[Howard \em{et~al.}(2017)Howard, Zhu, Chen, Kalenichenko, Wang, Weyand,
+  Andreetto, and Adam]{howard2017mobilenets}
+Howard, A.G.; Zhu, M.; Chen, B.; Kalenichenko, D.; Wang, W.; Weyand, T.;
+  Andreetto, M.; Adam, H.
+\newblock Mobilenets: Efficient convolutional neural networks for mobile vision
+  applications.
+\newblock {\em arXiv preprint arXiv:1704.04861} {\bf 2017}.
+
+\end{thebibliography}
